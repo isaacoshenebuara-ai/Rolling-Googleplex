@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music | BLYT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #990000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav h1 {
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: red;
+    }
+
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .cover {
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      border: 3px solid red;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      object-fit: cover;
+    }
+
+    .cover:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px red;
+    }
+
+    .song-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ff4444;
+    }
+
+    .controls {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .controls button {
+      background-color: #b30000;
+      color: white;
+      border: 2px solid red;
+      padding: 10px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .controls button:hover {
+      background-color: red;
+      transform: scale(1.05);
+    }
+
+   
+    .player-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 320px;
+    }
+
+    input[type="range"] {
+      flex-grow: 1;
+      appearance: none;
+      height: 6px;
+      background: #222;
+      border-radius: 5px;
+      outline: none;
+      overflow: hidden;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 10px;
+      height: 10px;
+      background: red;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .time {
+      font-size: 0.9rem;
+      color: #ccc;
+      min-width: 45px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>BLYT</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="music.html" class="active">Music</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="pictures.html">Pictures</a></li>
+      <li><a href="submit.html">Submit Media</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <div class="music-player">
+      <img id="cover" src="media/Cover 1.jpg" alt="Song Cover" class="cover">
+      <p id="title" class="song-title">Kendrick Lamar - Count Me Out</p>
+
+     
+      <audio id="audio" preload="metadata" muted>
+        <source src="media/Kendrick Lamar - Count Me Out.mp4" type="audio/mp4">
+        Your browser does not support the audio tag.
+      </audio>
+
+      <div class="player-bar">
+        <span id="currentTime" class="time">0:00</span>
+        <input type="range" id="progress" value="0" min="0" max="100">
+        <span id="duration" class="time">0:00</span>
+      </div>
+
+      <div class="controls">
+        <button onclick="prevSong()">⏮ Previous</button>
+        <button id="playPause">▶️ Play</button>
+        <button onclick="nextSong()">Next ⏭</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>@ 2025 BLYT PARENT COMPANY</p></footer>
+
+  <script>
+    const songs = [
+      {
+        title: "Kendrick Lamar - Count Me Out",
+        src: "media/Kendrick Lamar - Count Me Out.mp4",
+        cover: "media/Cover 1.jpg"
+      },
+      {
+        title: "Earl Sweatshirt - TOURMALINE",
+        src: "media/Earl Sweatshirt - TOURMALINE (Official Video).mp4",
+        cover: "media/Cover 2.jpg"
+      },
+      {
+        title: "Earl Sweatshirt - Chum (Explicit)",
+        src: "media/Earl Sweatshirt - Chum (Explicit).mp4",
+        cover: "media/Cover 3.jpg"
+      }
+    ];
+
+    let currentIndex = 0;
+    const audio = document.getElementById('audio');
+    const cover = document.getElementById('cover');
+    const title = document.getElementById('title');
+    const playPauseBtn = document.getElementById('playPause');
+    const progress = document.getElementById('progress');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    
+    audio.muted = false;
+
+    function loadSong(index) {
+      const song = songs[index];
+      title.textContent = song.title;
+      cover.src = song.cover;
+      audio.src = song.src;
+      audio.load();
+      audio.play().catch(() => {
+        console.warn("Autoplay prevented; user must click play.");
+      });
+      playPauseBtn.textContent = "⏸ Pause";
+    }
+
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % songs.length;
+      loadSong(currentIndex);
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+      loadSong(currentIndex);
+    }
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = "⏸ Pause";
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = "▶️ Play";
+      }
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (audio.duration) {
+        progress.value = (audio.currentTime / audio.duration) * 100;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        durationEl.textContent = formatTime(audio.duration);
+      }
+    });
+
+    progress.addEventListener("input", () => {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    });
+
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    
+    loadSong(currentIndex);
+  </script>
+</body>
+</html>

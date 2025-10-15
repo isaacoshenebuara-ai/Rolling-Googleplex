@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies | BLYT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #990000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav h1 {
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: red;
+    }
+
+    .movie-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      justify-items: center;
+    }
+
+    .poster {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      border: 3px solid red;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .poster:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px red;
+    }
+
+    .movie-title {
+      text-align: center;
+      color: #ff4444;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .player-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    video {
+      width: 80%;
+      max-width: 700px;
+      border: 3px solid red;
+      border-radius: 15px;
+      background-color: #111;
+      outline: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #222;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>BLYT</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="movies.html" class="active">Movies</a></li>
+      <li><a href="pictures.html">Pictures</a></li>
+      <li><a href="submit.html">Submit Media</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h2 style="text-align:center; color:red; margin-top:30px;">Movie Gallery</h2>
+
+    <div class="movie-gallery" id="movieGallery">
+      <div class="movie-item" onclick="playMovie(0)">
+        <img src="media/Big hero 6 poster.jpg" alt="Big Hero 6" class="poster">
+        <p class="movie-title">Big Hero 6</p>
+      </div>
+      <div class="movie-item" onclick="playMovie(1)">
+        <img src="media/Scott pilgrim vs the world poster.jpg" alt="Scott Pilgrim" class="poster">
+        <p class="movie-title">Scott Pilgrim vs The World</p>
+      </div>
+      <div class="movie-item" onclick="playMovie(2)">
+        <img src="media/Spiderman into the spiderverse.jpg" alt="Spiderman Into the Spiderverse" class="poster">
+        <p class="movie-title">Spiderman: Into the Spider-Verse</p>
+      </div>
+    </div>
+
+    <div class="player-container" id="playerContainer">
+      <h3 id="playingTitle" style="color:#ff4444;"></h3>
+      <video id="videoPlayer" controls>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <footer><p>@ 2025 BLYT</p></footer>
+
+  <script>
+    const movies = [
+      {
+        title: "Big Hero 6",
+        src: "media/Big hero 6 movie.mp4"
+      },
+      {
+        title: "Scott Pilgrim vs The World (Trailer)",
+        src: "media/Scott Pilgrim Vs. The World - Official Trailer.mp4"
+      },
+      {
+        title: "Spiderman: Into the Spider-Verse",
+        src: "media/Spiderman into the spiderverse.mp4"
+      }
+    ];
+
+    const playerContainer = document.getElementById('playerContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const playingTitle = document.getElementById('playingTitle');
+
+    function playMovie(index) {
+      const movie = movies[index];
+      playingTitle.textContent = movie.title;
+      videoPlayer.src = movie.src;
+      playerContainer.style.display = 'flex';
+      videoPlayer.load();
+      videoPlayer.play();
+      window.scrollTo({ top: playerContainer.offsetTop, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

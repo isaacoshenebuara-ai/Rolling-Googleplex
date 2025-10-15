@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | BLYT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #990000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav h1 {
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: red;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #990000 10%, black 80%);
+      color: white;
+    }
+
+    header h2 {
+      color: #ff4444;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    header p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #ddd;
+      font-size: 1.1rem;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 50px;
+    }
+
+    .card {
+      background-color: #111;
+      border: 2px solid red;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px red;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid red;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #222;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>BLYT</h1>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="pictures.html">Pictures</a></li>
+      <li><a href="submit.html">Submit Media</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h2>Welcome to BLYT</h2>
+    <p>Your one-stop destination for everything entertainment — music, movies, art, and creativity. Explore, enjoy, and even share your own media!</p>
+  </header>
+
+  <div class="sections">
+    <div class="card">
+      <img src="media/Cover 1.jpg" alt="Music">
+      <h3>Music</h3>
+      <p>Listen to your favorite tracks and discover new ones. Control playback and enjoy beautiful cover art interactions.</p>
+      <a href="music.html" class="btn">Explore Music</a>
+    </div>
+
+    <div class="card">
+      <img src="media/Big hero 6 poster.jpg" alt="Movies">
+      <h3>Movies</h3>
+      <p>Watch amazing films with just a click. Browse movie posters and dive straight into the action.</p>
+      <a href="movies.html" class="btn">Explore Movies</a>
+    </div>
+
+    <div class="card">
+      <img src="media/yellow-throated-sericornis-sericornis-citreogularis-illustrated-by-elizabeth-gould.jpg" alt="Pictures">
+      <h3>Pictures</h3>
+      <p>Explore stunning artwork and photography. Click any image to view it full-screen in vivid detail.</p>
+      <a href="pictures.html" class="btn">Explore Pictures</a>
+    </div>
+
+    <div class="card">
+      <img src="media/placeholder1.jpg" alt="Submit Media">
+      <h3>Submit Your Media</h3>
+      <p>Have something creative to share? Submit your music, movies, or art and join our community of creators.</p>
+      <a href="submit.html" class="btn">Submit Media</a>
+    </div>
+  </div>
+
+  <footer><p>@ 2025 BLYT PARENT COMPANY</p></footer>
+</body>
+</html>

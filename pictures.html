@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pictures | BLYT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #990000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav h1 {
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: red;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid red;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px red;
+    }
+
+    /* Fullscreen overlay */
+    .fullscreen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fullscreen img {
+      max-width: 90%;
+      max-height: 85%;
+      border: 3px solid red;
+      border-radius: 15px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #222;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>BLYT</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="pictures.html" class="active">Pictures</a></li>
+      <li><a href="submit.html">Submit Media</a></li>
+    </ul>
+  </nav>
+
+  <h2 style="text-align:center; color:red; margin-top:30px;">Picture Gallery</h2>
+
+  <div class="gallery">
+    <img src="media/black-swan-cygnus-atratus-illustrated-by-elizabeth-gould.jpg" alt="Black Swan" onclick="openFullscreen(this)">
+    <img src="media/chestnut-shouldered-grass-parakeet-euphema-pulchella-illustrated-by-elizabeth-gould.jpg" alt="Chestnut-shouldered Parakeet" onclick="openFullscreen(this)">
+    <img src="media/yellow-throated-sericornis-sericornis-citreogularis-illustrated-by-elizabeth-gould.jpg" alt="Yellow-throated Sericornis" onclick="openFullscreen(this)">
+  </div>
+
+
+  <div class="fullscreen" id="fullscreenView">
+    <span class="close-btn" onclick="closeFullscreen()">&times;</span>
+    <img id="fullscreenImg" src="" alt="Full View">
+  </div>
+
+  <footer><p>@ BLYT</p></footer>
+
+  <script>
+    const fullscreenView = document.getElementById('fullscreenView');
+    const fullscreenImg = document.getElementById('fullscreenImg');
+
+    function openFullscreen(img) {
+      fullscreenView.style.display = 'flex';
+      fullscreenImg.src = img.src;
+    }
+
+    function closeFullscreen() {
+      fullscreenView.style.display = 'none';
+    }
+
+ 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeFullscreen();
+    });
+  </script>
+</body>
+</html>

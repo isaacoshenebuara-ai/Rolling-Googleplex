@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Media | BLYT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #990000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav h1 {
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: red;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: #111;
+      padding: 40px;
+      border-radius: 15px;
+      border: 2px solid red;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    }
+
+    h2 {
+      text-align: center;
+      color: red;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #ff4444;
+    }
+
+    input, select {
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid red;
+      background-color: #000;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff4444;
+      box-shadow: 0 0 10px red;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid #222;
+      color: #888;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>BLYTE</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="pictures.html">Pictures</a></li>
+      <li><a href="submit.html" class="active">Submit Media</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Submit Your Media</h2>
+    <form>
+      <label for="name">Media Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter the name of your media" required>
+
+      <label for="type">Media Type</label>
+      <select id="type" name="type" required>
+        <option value="">Select type</option>
+        <option value="music">Music</option>
+        <option value="movie">Movie</option>
+        <option value="picture">Picture</option>
+      </select>
+
+      <label for="link">Media Link</label>
+      <input type="url" id="link" name="link" placeholder="Paste the media link here" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <footer><p>@ 2025 BLYTE PARENT COMPANY</p></footer>
+</body>
+</html>
